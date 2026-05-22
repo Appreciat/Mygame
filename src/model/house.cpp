@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "model/house.h"
+
 struct house{
 	struct player *player;
 	int price;

@@ -1,7 +1,7 @@
-#ifndef __PLAYER_H__
-#define __PLAYER_H__
+#ifndef MONOPOLY_MODEL_PLAYER_H
+#define MONOPOLY_MODEL_PLAYER_H
 
-#include "card.h"
+#include "model/card.h"
 
 struct player;
 struct player *player_create(const char *name,int number,int cash,int coin,int x,int y);
@@ -27,4 +27,4 @@ void player_set_x(struct player *player,int x);
 void player_set_y(struct player *player,int y);
 void player_set_count(struct player *player,int count);
 void player_set_card(struct player *player,struct card *card);
-#endif 
+#endif

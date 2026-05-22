@@ -1,10 +1,6 @@
 #include <stdio.h> 
 #include <stdlib.h>
 
-#include "map.h"
-#include "dice.h"
-#include "player.h"
-#include "house.h"
 #include "game.h"
 
 static void game_use_exchange_card(struct game *game);
@@ -31,7 +27,7 @@ struct game *game_create(){
 	struct dice *dice = dice_create(1);
 	struct player *player1 = player_create("Alice",2,10000,100,0,0);
 	struct player *player2 = player_create("Bob",1,10000,100,0,0);
-	struct house *head = house_create(); //虚拟头结点; 
+	struct house *head = house_create(); //????????; 
 	
 	game->player1 = player1;
 	game->player2 = player2;
@@ -80,7 +76,7 @@ void game_pay_cash(struct game *game){
 	struct player *player1 = game->player1;
 	struct player *player2 = game->player2;
 	
-	struct house *p = house_get_next(head); //虚拟的头结点不计入;
+	struct house *p = house_get_next(head); //?????????????;
 	 
 	while(p != NULL){
 		if(house_get_x(p) == player_get_x(player) && house_get_y(p) == player_get_y(player)){ 
@@ -112,15 +108,15 @@ void game_walk(struct game *game){
 	
 	point = dice_get_point(dice);
 	
-	int map_row = map_get_row(map) - 1; //地图的行数 
-	int map_col = map_get_col(map) - 1; //地图的列数 
+	int map_row = map_get_row(map) - 1; //????????? 
+	int map_col = map_get_col(map) - 1; //????????? 
 	
 	int player_row = player_get_y(player) / 60;
 	int player_col = player_get_x(player) / 60;
 	
-		if(player_row == 0) { //当人物在地图的最上侧 
+		if(player_row == 0) { //????????????????? 
 				player_col += point;
-				int d = map_col - player_col; //说明人物此时超出了map的范围 
+				int d = map_col - player_col; //???????????????map????? 
 				
 				if(d < 0){
 					player_col = map_col;
@@ -131,7 +127,7 @@ void game_walk(struct game *game){
 				return ;
 			}
 			
-		if(player_col == map_col){ //说明人物在地图的右侧 
+		if(player_col == map_col){ //???????????????? 
 			player_row += point;
 			int d = map_row - player_row;
 			
@@ -144,7 +140,7 @@ void game_walk(struct game *game){
 			return ;
 		} 
 
-		if(player_row == map_row){ //说明人物在地图的底侧了 
+		if(player_row == map_row){ //????????????????? 
 			player_col -= point;
 			int d = 0 - player_col;
 			
@@ -158,7 +154,7 @@ void game_walk(struct game *game){
 			return ;
 		} 
 		
-		if(player_col == 0){ //说明人物在地图的左侧了 
+		if(player_col == 0){ //?????????????????? 
 			player_row -= point;
 			int d = 0 - player_row;
 			if(d > 0){
@@ -205,24 +201,24 @@ void game_put_point(struct game *game,int state){
 	return ;
 }
 
-int game_put_space(struct game *game){ //这里特殊 
+int game_put_space(struct game *game){ //???????? 
 	struct house *head = game->houses;
 	struct player *player = game->nowplayer;
 	
-	struct house *p = house_get_next(head); //虚拟的头结点不计入;
+	struct house *p = house_get_next(head); //?????????????;
 	 
 	while(p != NULL){
-		if(house_get_x(p) == player_get_x(player) && house_get_y(p) == player_get_y(player)){ //说明空地上面有房屋 
+		if(house_get_x(p) == player_get_x(player) && house_get_y(p) == player_get_y(player)){ //???????????????? 
 			if(house_get_player(p) == player){
-				return 1; // 1代表房屋是自己的 
+				return 1; // 1??????????????? 
 			} else {
-				return 2; // 2 代表房屋是别人的; 
+				return 2; // 2 ??????????????; 
 			}
 		}
 		p = house_get_next(p);
 	}
 	
-	return 3; // 3代表可以购买房屋 
+	return 3; // 3????????????? 
 }
 
 void game_buy_house(struct game *game){
@@ -445,11 +441,11 @@ bool game_is_coin(struct game *game){
 	return player_get_coin(player) >= 50;
 }
 
-/*	 四张卡片	
-1、换位卡：使用此卡，双方的位置进行互换。 
-2、抢夺卡：使用此卡，抢夺对方的所有房屋。 
-3、均贫卡：使用此卡，双方金钱进行平分。 
-4、政策卡：使用此卡，自己名下的房屋全部提升一级。 
+/*	 ??????	
+1??????????????????????????????????? 
+2???????????????????????????????? 
+3?????????????????????????????? 
+4??????????????????????????????????????? 
 */
 
 void game_use_card(struct game *game){
@@ -541,22 +537,22 @@ void game_put_shop(struct game *game,int cardRandom){
 
 	switch(cardRandom){
 		case 1: {
-			struct card *card = card_create("换位卡", 1);
+			struct card *card = card_create("Exchange Card", 1);
 			player_set_card(player,card);
 			break;
 		}
 		case 2:{
-			struct card *card = card_create("征地卡", 2);
+			struct card *card = card_create("Rob Card", 2);
 			player_set_card(player,card);
 			break;
 		}
 		case 3:{
-			struct card *card = card_create("均贫卡", 3);
+			struct card *card = card_create("Average Card", 3);
 			player_set_card(player,card);
 			break;
 		}
 		case 4:{
-			struct card *card = card_create("红利卡", 4);
+			struct card *card = card_create("Upgrade Card", 4);
 			player_set_card(player,card);
 			break;
 		} 

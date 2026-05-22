@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "model/map.h"
+
 const int SPACE = 1;
 const int PIONT_10 = 2;
 const int PIONT_30 = 3;

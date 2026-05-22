@@ -1,5 +1,6 @@
-#ifndef __CARD_H__
-#define __CARD_H__
+#ifndef MONOPOLY_MODEL_CARD_H
+#define MONOPOLY_MODEL_CARD_H
+
 struct card;
 struct card *card_create(const char *name,int number);
 void card_destroy(struct card *card);

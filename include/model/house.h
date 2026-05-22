@@ -1,6 +1,7 @@
-#ifndef __HOUSE_H__
-#define __HOUSE_H__
+#ifndef MONOPOLY_MODEL_HOUSE_H
+#define MONOPOLY_MODEL_HOUSE_H
 
+struct player;
 struct house;
 
 struct house *house_create();

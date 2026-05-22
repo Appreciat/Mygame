@@ -1,11 +1,10 @@
-#ifndef __GAME_H__
-#define __GAME_H__
+#ifndef MONOPOLY_GAME_H
+#define MONOPOLY_GAME_H
 
-#include "map.h"
-#include "dice.h"
-#include "player.h"
-#include "house.h"
-#include "game.h"
+#include "model/dice.h"
+#include "model/house.h"
+#include "model/map.h"
+#include "model/player.h"
 
 struct game;
 
@@ -45,4 +44,4 @@ void game_put_bank(struct game *game);
 void game_put_prison(struct game *game);
 void game_put_hospital(struct game *game); 
 void game_put_shop(struct game *game,int cardRandom);
-#endif 
+#endif

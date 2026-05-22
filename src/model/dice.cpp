@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include "model/dice.h"
+
 struct dice{
 	int point;
 };

@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "card.h"
+#include "model/player.h"
+
 struct player{
 	char name[50];
 	int number;

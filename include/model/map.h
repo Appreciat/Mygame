@@ -1,5 +1,6 @@
-#ifndef __MAP_H__
-#define __MAP_H__
+#ifndef MONOPOLY_MODEL_MAP_H
+#define MONOPOLY_MODEL_MAP_H
+
 struct map;
 
 struct map *map_create();

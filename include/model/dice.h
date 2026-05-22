@@ -1,5 +1,6 @@
-#ifndef __DICE_H__
-#define __DICE_H__
+#ifndef MONOPOLY_MODEL_DICE_H
+#define MONOPOLY_MODEL_DICE_H
+
 struct dice;
 
 struct dice *dice_create(int point);

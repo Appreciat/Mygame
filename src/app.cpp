@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <easyx.h>
+#include <windows.h>
 
 #include "game.h"
 #include "controller.h"
